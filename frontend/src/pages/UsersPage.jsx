@@ -46,14 +46,14 @@ export default function UsersPage() {
         <p>Manage farmer and admin accounts · {users.length} total users</p>
       </div>
 
-      <div style={{ display:'flex', gap:12, marginBottom:20, justifyContent:'space-between', alignItems:'center' }}>
-        <input className="form-input" placeholder="🔍 Search by name or email..." style={{ maxWidth:300 }}
+      <div style={{ display: 'flex', gap: 12, marginBottom: 20, justifyContent: 'space-between', alignItems: 'center' }}>
+        <input className="form-input" placeholder="🔍 Search by name or email..." style={{ maxWidth: 300 }}
           value={search} onChange={e => setSearch(e.target.value)} />
-        <div style={{ display:'flex', gap:8 }}>
-          <span style={{ background:'#dcfce7', color:'#15803d', padding:'6px 14px', borderRadius:20, fontSize:'.82rem', fontWeight:600 }}>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <span style={{ background: '#dcfce7', color: '#15803d', padding: '6px 14px', borderRadius: 20, fontSize: '.82rem', fontWeight: 600 }}>
             👑 {users.filter(u => u.role === 'admin').length} Admins
           </span>
-          <span style={{ background:'#dbeafe', color:'#1d4ed8', padding:'6px 14px', borderRadius:20, fontSize:'.82rem', fontWeight:600 }}>
+          <span style={{ background: '#dbeafe', color: '#1d4ed8', padding: '6px 14px', borderRadius: 20, fontSize: '.82rem', fontWeight: 600 }}>
             🌾 {users.filter(u => u.role === 'farmer').length} Farmers
           </span>
         </div>
@@ -62,9 +62,9 @@ export default function UsersPage() {
       <div className="card">
         <div className="table-wrap">
           {loading ? (
-            <div style={{ textAlign:'center', padding:'48px', color:'var(--muted)' }}>
-              <div style={{ fontSize:'2rem' }} className="pulse">👥</div>
-              <p style={{ marginTop:8 }}>Loading users...</p>
+            <div style={{ textAlign: 'center', padding: '48px', color: 'var(--muted)' }}>
+              <div style={{ fontSize: '2rem' }} className="pulse">👥</div>
+              <p style={{ marginTop: 8 }}>Loading users...</p>
             </div>
           ) : (
             <table>
@@ -75,34 +75,34 @@ export default function UsersPage() {
                 {filtered.map(u => (
                   <tr key={u._id}>
                     <td>
-                      <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-                        <div className="avatar" style={{ width:32, height:32, fontSize:'.78rem', flexShrink:0, background: u.role==='admin' ? 'var(--green-700)' : '#3b82f6' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <div className="avatar" style={{ width: 32, height: 32, fontSize: '.78rem', flexShrink: 0, background: u.role === 'admin' ? 'var(--green-700)' : '#3b82f6' }}>
                           {u.name[0]?.toUpperCase()}
                         </div>
                         <div>
-                          <div style={{ fontWeight:600, fontSize:'.9rem' }}>{u.name}</div>
-                          {u.phone && <div style={{ fontSize:'.75rem', color:'var(--muted)' }}>{u.phone}</div>}
+                          <div style={{ fontWeight: 600, fontSize: '.9rem' }}>{u.name}</div>
+                          {u.phone && <div style={{ fontSize: '.75rem', color: 'var(--muted)' }}>{u.phone}</div>}
                         </div>
                       </div>
                     </td>
-                    <td style={{ fontSize:'.88rem' }}>{u.email}</td>
+                    <td style={{ fontSize: '.88rem' }}>{u.email}</td>
                     <td>
-                      <span style={{ padding:'4px 12px', borderRadius:20, fontSize:'.78rem', fontWeight:600, background: u.role==='admin' ? '#dcfce7' : '#dbeafe', color: u.role==='admin' ? '#15803d' : '#1d4ed8' }}>
+                      <span style={{ padding: '4px 12px', borderRadius: 20, fontSize: '.78rem', fontWeight: 600, background: u.role === 'admin' ? '#dcfce7' : '#dbeafe', color: u.role === 'admin' ? '#15803d' : '#1d4ed8' }}>
                         {u.role === 'admin' ? '👑 Admin' : '🌾 Farmer'}
                       </span>
                     </td>
-                    <td style={{ fontSize:'.85rem' }}>{u.farmName || '—'}</td>
+                    <td style={{ fontSize: '.85rem' }}>{u.farmName || '—'}</td>
                     <td>
-                      <span style={{ padding:'4px 10px', borderRadius:20, fontSize:'.78rem', fontWeight:600, background: u.isActive ? '#dcfce7' : '#fee2e2', color: u.isActive ? '#15803d' : '#dc2626' }}>
+                      <span style={{ padding: '4px 10px', borderRadius: 20, fontSize: '.78rem', fontWeight: 600, background: u.isActive ? '#dcfce7' : '#fee2e2', color: u.isActive ? '#15803d' : '#dc2626' }}>
                         {u.isActive ? '● Active' : '● Inactive'}
                       </span>
                     </td>
-                    <td style={{ fontSize:'.82rem', color:'var(--muted)' }}>
-                      {new Date(u.createdAt).toLocaleDateString('en-LK', { day:'2-digit', month:'short', year:'numeric' })}
+                    <td style={{ fontSize: '.82rem', color: 'var(--muted)' }}>
+                      {new Date(u.createdAt).toLocaleDateString('en-LK', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </td>
                     <td>
                       {u._id !== me._id && (
-                        <div style={{ display:'flex', gap:6 }}>
+                        <div style={{ display: 'flex', gap: 6 }}>
                           {u.role === 'farmer'
                             ? <button className="btn btn-secondary btn-sm" onClick={() => changeRole(u._id, 'admin')}>→ Admin</button>
                             : <button className="btn btn-secondary btn-sm" onClick={() => changeRole(u._id, 'farmer')}>→ Farmer</button>
@@ -113,7 +113,7 @@ export default function UsersPage() {
                           <button className="btn btn-danger btn-sm" onClick={() => del(u._id)}>🗑️</button>
                         </div>
                       )}
-                      {u._id === me._id && <span style={{ fontSize:'.78rem', color:'var(--muted)' }}>You</span>}
+                      {u._id === me._id && <span style={{ fontSize: '.78rem', color: 'var(--muted)' }}>You</span>}
                     </td>
                   </tr>
                 ))}
